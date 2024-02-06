@@ -74,6 +74,20 @@ class MyLinkedLists<T>{
 
     }
 
+    public T deleteLast(){
+        if (size <= 1){
+            return deleteFirst();
+        }
+        MyNode<T> node = head;
+        while (node.next != tail){
+            node = node.next;
+        }
+        T val = tail.data;
+        node.next = null;
+        tail = node;
+        return val;
+    }
+
 //    public void addNode(T data){
 //        MyNode<T> newNode = new MyNode<>(data);
 //        if(head == null){
@@ -112,7 +126,7 @@ public class Test {
 
 
 
-        System.out.println(integerList.deleteFirst());
+        System.out.println(integerList.deleteLast());
         System.out.println("Linked List after deletion: ");
         integerList.displayList();
 
