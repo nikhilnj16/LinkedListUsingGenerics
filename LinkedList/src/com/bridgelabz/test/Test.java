@@ -1,29 +1,35 @@
 package com.bridgelabz.test;
 
-class Node<T>{
-    T key;
-    Node<T> next;
+class MyNode<T>{
+    T data;
+    MyNode<T> next;
 
-    public Node(T key) {
-        this.key = key;
+    public MyNode(T data) {
+        this.data = data;
         this.next = null;
     }
 }
 
 class MyLinkedLists<T>{
-    Node<T> head;
-
+    MyNode<T> head;
     public MyLinkedLists() {
         this.head = null;
     }
 
+    public void InsertFirst(T data){
+        MyNode<T> AddFirstNode = new MyNode<>(data);
+        AddFirstNode.next = head;
+        head = AddFirstNode;
+
+    }
+
     public void addNode(T data){
-        Node<T> newNode = new Node<>(data);
+        MyNode<T> newNode = new MyNode<>(data);
         if(head == null){
             head = newNode;
         }
         else{
-            Node<T> temp = head;
+            MyNode<T> temp = head;
             while (temp.next != null){
                 temp = temp.next;
             }
@@ -31,9 +37,9 @@ class MyLinkedLists<T>{
         }
     }
     public void displayList(){
-        Node<T> temp = head;
+        MyNode<T> temp = head;
         while (temp != null){
-            System.out.print(temp.key + "-> ");
+            System.out.print(temp.data + "-> ");
             temp = temp.next;
         }
         System.out.println();
@@ -47,9 +53,9 @@ class MyLinkedLists<T>{
 public class Test {
     public static void main(String[] args) {
         MyLinkedLists <Integer> integerList = new MyLinkedLists<>();
-        integerList.addNode(56);
-        integerList.addNode(30);
-        integerList.addNode(70);
+        integerList.InsertFirst(70);
+        integerList.InsertFirst(30);
+        integerList.InsertFirst(56);
         System.out.println("Linked List: ");
         integerList.displayList();
     }
