@@ -12,30 +12,44 @@ class MyNode<T>{
 
 class MyLinkedLists<T>{
     MyNode<T> head;
+    MyNode<T> tail;
     public MyLinkedLists() {
         this.head = null;
+        this.tail = null;
     }
 
-    public void InsertFirst(T data){
+    public void insertFirst(T data){
         MyNode<T> AddFirstNode = new MyNode<>(data);
         AddFirstNode.next = head;
         head = AddFirstNode;
+        if (tail == null){
+            tail = head;
+        }
 
     }
-
-    public void addNode(T data){
-        MyNode<T> newNode = new MyNode<>(data);
-        if(head == null){
-            head = newNode;
+    public void insertLast(T data){
+        if (tail == null){
+            insertFirst(data);
+            return;
         }
-        else{
-            MyNode<T> temp = head;
-            while (temp.next != null){
-                temp = temp.next;
-            }
-            temp.next = newNode;
-        }
+        MyNode<T> node = new MyNode<>(data);
+        tail.next = node;
+        tail = node;
     }
+
+//    public void addNode(T data){
+//        MyNode<T> newNode = new MyNode<>(data);
+//        if(head == null){
+//            head = newNode;
+//        }
+//        else{
+//            MyNode<T> temp = head;
+//            while (temp.next != null){
+//                temp = temp.next;
+//            }
+//            temp.next = newNode;
+//        }
+//    }
     public void displayList(){
         MyNode<T> temp = head;
         while (temp != null){
@@ -53,9 +67,9 @@ class MyLinkedLists<T>{
 public class Test {
     public static void main(String[] args) {
         MyLinkedLists <Integer> integerList = new MyLinkedLists<>();
-        integerList.InsertFirst(70);
-        integerList.InsertFirst(30);
-        integerList.InsertFirst(56);
+        integerList.insertFirst(56);
+        integerList.insertLast(30);
+        integerList.insertLast(70);
         System.out.println("Linked List: ");
         integerList.displayList();
     }
