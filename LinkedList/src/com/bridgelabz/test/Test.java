@@ -1,4 +1,7 @@
 package com.bridgelabz.test;
+import org.junit.*;
+
+import static org.junit.Assert.*;
 
 class MyNode<T>{
     T data;
@@ -88,6 +91,17 @@ class MyLinkedLists<T>{
         return val;
     }
 
+
+    public T search(T data){
+        MyNode<T> node = head;
+        while (node != null) {
+            if (node.data == data){
+                return node.data;
+            }
+            node = node.next;
+        }
+        return null;
+    }
 //    public void addNode(T data){
 //        MyNode<T> newNode = new MyNode<>(data);
 //        if(head == null){
@@ -129,6 +143,14 @@ public class Test {
         System.out.println(integerList.deleteLast());
         System.out.println("Linked List after deletion: ");
         integerList.displayList();
+
+        System.out.println(integerList.search(30));
+//        MyNode foundNode = integerList.search(30);
+//        assertNotNull(foundNode);
+//        assertEquals(30, foundNode.data);
+//
+//        MyNode notFoundNode = integerList.search(40);
+//        assertNull(notFoundNode);
 
     }
 }
