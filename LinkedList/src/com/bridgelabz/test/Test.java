@@ -63,6 +63,17 @@ class MyLinkedLists<T>{
         size++;
     }
 
+    public T deleteFirst(){
+        T val = head.data;
+        head = head.next;
+        if (head == null){
+            tail = null;
+        }
+        size--;
+        return val;
+
+    }
+
 //    public void addNode(T data){
 //        MyNode<T> newNode = new MyNode<>(data);
 //        if(head == null){
@@ -97,6 +108,12 @@ public class Test {
         integerList.insertLast(70);
         integerList.insertBetween(30, 1);
         System.out.println("Linked List: ");
+        integerList.displayList();
+
+
+
+        System.out.println(integerList.deleteFirst());
+        System.out.println("Linked List after deletion: ");
         integerList.displayList();
 
     }
