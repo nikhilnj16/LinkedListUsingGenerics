@@ -88,7 +88,21 @@ class MyLinkedLists<T>{
         T val = tail.data;
         node.next = null;
         tail = node;
+        size--;
         return val;
+    }
+
+    public void deleteBetween(T data){
+        temp = head;
+        while(temp != null && !temp.next.data.equals(data)){
+            temp = temp.next;
+        }
+        if (temp == null){
+            throw new IllegalStateException("Data not found in the list");
+        }
+        temp.next = temp.next.next;
+        size--;
+
     }
 
 
@@ -160,8 +174,7 @@ public class Test {
         integerList.displayList();
 
 
-
-        System.out.println(integerList.deleteLast());
+        integerList.deleteBetween(40);
         System.out.println("Linked List after deletion: ");
         integerList.displayList();
 
