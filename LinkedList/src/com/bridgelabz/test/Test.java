@@ -157,6 +157,9 @@ class MyLinkedLists<T>{
         }
         System.out.println();
     }
+    public int sizel(){
+        return size;
+    }
 
 
 
@@ -177,6 +180,7 @@ public class Test {
         integerList.deleteBetween(40);
         System.out.println("Linked List after deletion: ");
         integerList.displayList();
+        System.out.println(integerList.sizel());
 
         System.out.println(integerList.search(30));
 //        MyNode foundNode = integerList.search(30);
