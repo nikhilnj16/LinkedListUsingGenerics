@@ -102,6 +102,26 @@ class MyLinkedLists<T>{
         }
         return null;
     }
+
+    public void insertBetweenValues(T newData, T data){
+
+        temp = head;
+        MyNode<T> newNode = new MyNode<>(newData);
+
+        while (temp != null && !temp.data.equals(data)){
+            temp = temp.next;
+        }
+        if(temp == null){
+            throw new IllegalStateException("Data not found in the list");
+        }
+        newNode.next = temp.next;
+        temp.next = newNode;
+        size++;
+
+
+    }
+
+
 //    public void addNode(T data){
 //        MyNode<T> newNode = new MyNode<>(data);
 //        if(head == null){
@@ -135,6 +155,7 @@ public class Test {
         integerList.insertFirst(56);
         integerList.insertLast(70);
         integerList.insertBetween(30, 1);
+        integerList.insertBetweenValues(40, 30);
         System.out.println("Linked List: ");
         integerList.displayList();
 
