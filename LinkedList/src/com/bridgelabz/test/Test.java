@@ -1,6 +1,8 @@
 package com.bridgelabz.test;
 import org.junit.*;
 
+import java.util.Collections;
+
 import static org.junit.Assert.*;
 
 class MyNode<T>{
@@ -14,6 +16,38 @@ class MyNode<T>{
     public MyNode(T data, MyNode<T> next) {
         this.data = data;
         this.next = next;
+    }
+}
+
+class SortedLinkedList<T extends Comparable<T>> {
+    MyNode<T> head;
+
+    public SortedLinkedList() {
+        this.head = null;
+    }
+
+    public void addElement(T data) {
+        MyNode<T> newNode = new MyNode<>(data);
+        if (head == null || data.compareTo(head.data) < 0) {
+            newNode.next = head;
+            head = newNode;
+        } else {
+            MyNode<T> current = head;
+            while (current.next != null && data.compareTo(current.next.data) > 0) {
+                current = current.next;
+            }
+            newNode.next = current.next;
+            current.next = newNode;
+        }
+    }
+
+    public void printElement(){
+        MyNode<T> current = head;
+        while(current != null){
+            System.out.print(current.data + "->");
+            current = current.next;
+        }
+        System.out.println("End");
     }
 }
 
@@ -183,6 +217,14 @@ public class Test {
         System.out.println(integerList.sizel());
 
         System.out.println(integerList.search(30));
+
+        SortedLinkedList <Integer> integerSortedLinkedList = new SortedLinkedList<>();
+        integerSortedLinkedList.addElement(56);
+        integerSortedLinkedList.addElement(30);
+        integerSortedLinkedList.addElement(40);
+        integerSortedLinkedList.addElement(70);
+        System.out.println("Sorted Linked list: ");
+        integerSortedLinkedList.printElement();
 //        MyNode foundNode = integerList.search(30);
 //        assertNotNull(foundNode);
 //        assertEquals(30, foundNode.data);
